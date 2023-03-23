@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "rindus_coding_test.core.apps.CoreConfig",
     "rindus_coding_test.users",
     "rindus_coding_test.fake_rest_api.apps.FakeRestApiConfig"
     # Your stuff: custom apps go here
@@ -317,7 +318,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 10
+    "PAGE_SIZE": 10,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
@@ -331,5 +332,12 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
 }
-# Your stuff...
+
+# Project stuff...
 # ------------------------------------------------------------------------------
+
+# CORE settings
+# ------------------------------------------------------------------------------
+POST_COMMENT_ADAPTER_BY_VERSION = {
+    "v1": "fake_rest_api.adapters.api_clients.FakeApiAdapter",
+}

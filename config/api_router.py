@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from rindus_coding_test.fake_rest_api.api.views import PostViewSet, CommentViewSet
+from rindus_coding_test.core.api.views import CommentViewSet, PostViewSet
 from rindus_coding_test.users.api.views import UserViewSet
 
 if settings.DEBUG:
