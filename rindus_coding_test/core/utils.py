@@ -16,7 +16,7 @@ def get_fake_api_client_by_version(api_version: str = "v1") -> InteractionsInter
     """
     Get adapter based on used api version
     :param api_version:
-    :return:
+    :return: InteractionsInterface object
     """
     if api_version in settings.POST_COMMENT_ADAPTER_BY_VERSION.keys():
         full_module = settings.POST_COMMENT_ADAPTER_BY_VERSION[api_version]
@@ -30,7 +30,8 @@ def get_fake_api_client_by_version(api_version: str = "v1") -> InteractionsInter
     return fake_api_client
 
 
-def load_initial_data():
+def load_initial_data() -> None:
+    """Load initial data from remote service"""
     fake_api_client = get_fake_api_client_by_version()
 
     for post in fake_api_client.get_posts():
@@ -77,7 +78,7 @@ def update_local_data() -> None:
 
 
 def update_remote_post_data(post_queryset: QuerySet):
-    """Update remote data (fake api) with MASTER data"""
+    """Update Post remote data (fake api) with MASTER data"""
     fake_api_client = get_fake_api_client_by_version()
     for post_instance in post_queryset:
         post = PostInstanceAdapter(post_instance)
@@ -88,6 +89,7 @@ def update_remote_post_data(post_queryset: QuerySet):
 
 
 def update_remote_comment_data(comment_queryset: QuerySet):
+    """Update Comment remote data (fake api) with MASTER data"""
     fake_api_client = get_fake_api_client_by_version()
     for comment_instance in comment_queryset:
         comment = CommentInstanceAdapter(comment_instance)

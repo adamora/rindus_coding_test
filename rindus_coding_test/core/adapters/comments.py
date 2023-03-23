@@ -2,6 +2,8 @@ from rindus_coding_test.core.interfaces.comments import CommentInterface
 
 
 class CommentInstanceAdapter(CommentInterface):
+    """Comment representation bsed on Comment DB instances"""
+
     @property
     def id(self):
         return self.raw_data.id

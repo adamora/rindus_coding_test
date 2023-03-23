@@ -2,6 +2,8 @@ import abc
 
 
 class CommentInterface(abc.ABC):
+    """Common interface for comment representation"""
+
     def __init__(self, raw_data) -> None:
         assert raw_data, '"raw_data" required'
         self.raw_data = raw_data

@@ -2,6 +2,8 @@ from rindus_coding_test.core.interfaces.comments import CommentInterface
 
 
 class CommentJsonAdapter(CommentInterface):
+    """Comment representation bsed on Fake API Comment object"""
+
     @property
     def id(self):
         return self.raw_data["id"]

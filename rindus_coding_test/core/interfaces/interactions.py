@@ -5,6 +5,8 @@ from rindus_coding_test.core.interfaces.posts import PostInterface
 
 
 class InteractionsInterface(abc.ABC):
+    """This interface allow us to adapt operations from different sources"""
+
     @abc.abstractmethod
     def get_posts(self) -> list[PostInterface]:
         pass

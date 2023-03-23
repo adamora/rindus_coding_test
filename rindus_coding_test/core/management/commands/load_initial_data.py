@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
+    """Load initial data in local (MASTER) from remote (Fake API)"""
+
     help = "Load initial data"
 
     def add_arguments(self, parser: CommandParser) -> None:

@@ -19,6 +19,8 @@ logger = logging.getLogger(__name__)
 
 
 class FakeApiAdapter(InteractionsInterface):
+    """Client class to get information from Faker API built based on a custom interface"""
+
     base_url = "https://jsonplaceholder.typicode.com/"
 
     def __init__(

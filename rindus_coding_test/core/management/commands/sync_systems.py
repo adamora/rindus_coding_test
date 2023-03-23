@@ -9,5 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
+    """Sync remote (Fake API) & local (MASTER) data"""
+
     def handle(self, *args: Any, **options: Any) -> str | None:
         sync_with_remote.delay()  # If sync_with_remote would receive params, those must be in json serializable format
