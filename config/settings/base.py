@@ -339,5 +339,5 @@ SPECTACULAR_SETTINGS = {
 # CORE settings
 # ------------------------------------------------------------------------------
 POST_COMMENT_ADAPTER_BY_VERSION = {
-    "v1": "fake_rest_api.adapters.api_clients.FakeApiAdapter",
+    "v1": "rindus_coding_test.fake_rest_api.adapters.api_clients.FakeApiAdapter",
 }

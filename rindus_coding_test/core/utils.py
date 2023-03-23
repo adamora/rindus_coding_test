@@ -1,10 +1,15 @@
+import logging
+
 from django.conf import settings
+from django.db.models import QuerySet
 
 from rindus_coding_test.core.adapters.comments import CommentInstanceAdapter
 from rindus_coding_test.core.adapters.posts import PostInstanceAdapter
 from rindus_coding_test.core.exceptions import CommentDoesNotExists, PostDoesNotExists
 from rindus_coding_test.core.interfaces.interactions import InteractionsInterface
 from rindus_coding_test.core.models import Comment, Post
+
+logger = logging.getLogger(__name__)
 
 
 def get_fake_api_client_by_version(api_version: str = "v1") -> InteractionsInterface:
@@ -71,17 +76,20 @@ def update_local_data() -> None:
             pass
 
 
-def update_remote_data():
+def update_remote_post_data(post_queryset: QuerySet):
     """Update remote data (fake api) with MASTER data"""
     fake_api_client = get_fake_api_client_by_version()
-    for post_instance in Post.objects.all():
+    for post_instance in post_queryset:
         post = PostInstanceAdapter(post_instance)
         try:
             fake_api_client.update_post(post)
         except PostDoesNotExists:
             fake_api_client.create_post(post)
 
-    for comment_instance in Comment.objects.all():
+
+def update_remote_comment_data(comment_queryset: QuerySet):
+    fake_api_client = get_fake_api_client_by_version()
+    for comment_instance in comment_queryset:
         comment = CommentInstanceAdapter(comment_instance)
         try:
             fake_api_client.update_comment(comment)
